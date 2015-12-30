@@ -1,0 +1,592 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<LINK REL=StyleSheet HREF="master.css" TYPE="text/css" MEDIA=screen>
+<LINK REL=StyleSheet HREF="slideshow_donate.css" TYPE="text/css" MEDIA=screen>
+<title>Save the Children</title>
+</head>
+
+<script src="menu_glow.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+<script type="text/javascript">
+var divAnimationComplete = true;
+var gradeAnimationComplete = true;
+function divInfo(id, source)
+{
+	this.id = id;
+	this.source = source;
+}
+
+function sourceInfo(source, caption)
+{
+	this.source= source;
+	this.caption = caption;
+}
+
+var srcArray_global = new Array(); 
+
+function loadImg(num, grade)
+{
+	var srcArray = new Array(); 
+	for (var x = 1; x <= num; x++)
+	{
+		srcArray[x-1] = new sourceInfo("Images/Photos/Students/" + grade + "/" + x.toString() + ".JPG", " "); 
+	}
+	
+	if (grade == "PreK"){
+	srcArray[0].caption = "NASARÉ JOTA IÉ, 5"; 
+	srcArray[1].caption = "MEMO TOME CÁ, 5"; 
+	srcArray[2].caption = "JO ARMANDO, 6"; 
+	srcArray[3].caption = "JUD IE TE, 4"; 
+	srcArray[4].caption = "JULMICA CÁ, 4"; 
+	srcArray[5].caption = "BEMSAO BARCO SANHA, 6"; 
+	srcArray[6].caption = "LIVANDRA BETO IÉ, 6"; 
+	srcArray[7].caption = "JOEL PURNA, 6"; 
+	srcArray[8].caption = "DJONAS RUMINDO, 6"; 
+	srcArray[9].caption = "BEJAMIM CARLOS, 5"; 
+	srcArray[10].caption = "PRÉTO TÉ, 6"; 
+	srcArray[11].caption = "RUBEM JOSE IMBOLÉ, 5"; 
+	srcArray[12].caption = "OSVALDO CORREIA LOPES, 6"; 
+	srcArray[13].caption = "ADASSA ADOLFO SANHA, 5"; 
+	srcArray[14].caption = "LIO TROPA CÓ, 6"; 
+	srcArray[15].caption = "DUNART CÁ, 4"; 
+	srcArray[16].caption = "JÉNE CORREIA, 5"; 
+	srcArray[17].caption = "GILDO MARIO IÉ, 5"; 
+	srcArray[18].caption = "ABENE ANTONIO, 6"; 
+	srcArray[19].caption = "FILOMELO CORREIA CÁ, 7"; 
+	srcArray[20].caption = "BAMPULE DOMINGOS, 6"; 
+	srcArray[21].caption = "ESTER ANIBAL, 6"; 
+	srcArray[22].caption = "CELTIMIO SILISTINO, 5"; 
+	srcArray[23].caption = "SABA CHAQUIRA, 6"; 
+	srcArray[24].caption = "TOIA CORREIA, 6"; 
+	srcArray[25].caption = "JUDICIA DE OLIVEIRA, 6"; 
+	}
+	
+	if (grade == "1st")
+	{
+srcArray[0].caption = "SILVANO IÉ, 7";
+srcArray[1].caption = "LEONESA CÓ, 6";
+srcArray[2].caption = "VICTOR SA, 7";
+srcArray[3].caption = "ALCE IÉ, 8";
+srcArray[4].caption = "JOIA TÉ, 10";
+srcArray[5].caption = "TINOCA INDI, 6";
+srcArray[6].caption = "ABRAO CA, 13";
+srcArray[7].caption = "CATIA SANHA, 8";
+srcArray[8].caption = "TANIA SANHA, 8";
+srcArray[9].caption = "NADINE DJU, 7";
+srcArray[10].caption = "BISANTA TCHUMA, 8";
+srcArray[11].caption = "FEBE IMBOLE, 6";
+srcArray[12].caption = "JEREMIAS SANA, 7";
+srcArray[13].caption = "JUNIOR IE, 8";
+srcArray[14].caption = "MUNIRA TÉ, 7";
+srcArray[15].caption = "DILSON NTCHATE, 8";
+srcArray[16].caption = "MAIMUNA SISSE, 7";
+srcArray[17].caption = "SUENIO IALA, 6";
+srcArray[18].caption = "NEEMIAS SANHA, 6";
+srcArray[19].caption = "MANSATA DANFA, 8";
+srcArray[20].caption = "MAIKEL IETÉ, 8";
+srcArray[21].caption = "GIRALDO CÁ, 6";
+srcArray[22].caption = "SABA BISSAM, 6";
+srcArray[23].caption = "RUMANO IE, 14";
+srcArray[24].caption = "MARINA DJU, 11";
+srcArray[25].caption = "ISAQUE CÁ, 8";
+srcArray[26].caption = "LOLITA CÁ, 8";
+srcArray[27].caption = "ALICE CÁ, 8";
+srcArray[28].caption = "ERIVAN DJU, 10";
+srcArray[29].caption = "SOLANGE IE, 7";
+srcArray[30].caption = "LEIA SANHA, 6";
+srcArray[31].caption = "RUMINDO DJU, 7";
+srcArray[32].caption = "USSUFE SISSE, 8";
+	}
+	
+	if (grade == "2nd")
+	{
+srcArray[0].caption = "IRNINA DOMINGOS CÁ, 9";
+srcArray[1].caption = "EDIVINA ADOLFO SANHA, 7";
+srcArray[2].caption = "VIDIA INACIO DA COSTA, 12";
+srcArray[3].caption = "URIANA GIORGI CÁ, 11";
+srcArray[4].caption = "GESICA GOMES CÁ, 13";
+srcArray[5].caption = "RAISA CÁ, 9";
+srcArray[6].caption = "MICHAEL SORE QUEITA, 13";
+srcArray[7].caption = "SIMAO LINO CÁ, 9";
+srcArray[8].caption = "BETINA S CÁ, 11";
+srcArray[9].caption = "BETE RUMINDO DJU, 10";
+srcArray[10].caption = "MIRIAM ANTONIO CUSSA, 8";
+srcArray[11].caption = "ELIAS BARCO SANHA, 10";
+srcArray[12].caption = "JUEL DUARTE NTCHETE, 11";
+srcArray[13].caption = "MARIA HELENA INTCHALA, 10";
+srcArray[14].caption = "ELMIRA PAULINO SÁ, 9";
+srcArray[15].caption = "TIAGO NTCHALA BERNA, 11";
+srcArray[16].caption = "ANA BANA SANHA, 10";
+srcArray[17].caption = "ELIAS NUNO CA, 12";
+srcArray[18].caption = "JOAO IMDEME, 9";
+srcArray[19].caption = "AMISOM SANHA, 9";
+srcArray[20].caption = "LANDIM AVILINO SA, 9";
+srcArray[21].caption = "NELO PAPA CA, 11";
+srcArray[22].caption = "IANIQUE JULIO IE, 10";
+srcArray[23].caption = "JUSTINO CA, 9";
+srcArray[24].caption = "CLODE PAPIS DJU, 9";
+srcArray[25].caption = "BECAMP RUMINDO DJU, 9";
+srcArray[26].caption = "LUCAS ORLANDO TE, 10";
+srcArray[27].caption = "NADIA ARMANDO IE, 10";
+srcArray[28].caption = "NUAIME GOLVEA SANHA, 15";
+srcArray[29].caption = "DAVID OCANTÉ IE, 9";
+	}
+	
+	if (grade == "3rd")
+	{
+srcArray[0].caption = "GIL IE, 11";
+srcArray[1].caption = "JOAQUIM IE, 9";
+srcArray[2].caption = "BENEDETA DJU, 12";
+srcArray[3].caption = "LAMIO PAULINO SA, 11";
+srcArray[4].caption = "EMANUELA SANHA, 9";
+srcArray[5].caption = "NAZIANA FANDA, 9";
+srcArray[6].caption = "MIRIAM CA, 12";
+srcArray[7].caption = "IDELIO DE OLIVEIRA, 11";
+srcArray[8].caption = "VANUSA TE, 11";
+srcArray[9].caption = "LAURO DJU, 10";
+srcArray[10].caption = "SATU SANHA, 11";
+srcArray[11].caption = "FOSTIANO SA, 12";
+srcArray[12].caption = "JOAO PAULO JAMOTI, 10";
+srcArray[13].caption = "FOSTINO INDI, 11";
+srcArray[14].caption = "DJEMBA SESSE, 13";
+srcArray[15].caption = "MAMAI CARDOSO CA, 10";
+srcArray[16].caption = "IVANILDA CO, 13";
+srcArray[17].caption = "PANSAO SANHA, 14";
+srcArray[18].caption = "FABIO TE, 9";
+srcArray[19].caption = "ADAMA CO, 13";
+srcArray[20].caption = "MARCIANO TE, 11";
+srcArray[21].caption = "JORDEL DJU, 12";
+srcArray[22].caption = "SAMUEL NTCHETE, 13";
+srcArray[23].caption = "RONICE DJU, 18";
+srcArray[24].caption = "RONALDA, 13";
+srcArray[25].caption = "SETE CA, 16";
+srcArray[26].caption = "SAMIRA CA, 13";
+srcArray[27].caption = "KANDE DJU, 15";
+	}
+	
+	if (grade == "4th")
+	{
+srcArray[0].caption = "EDINA CARNAVAL TE, 13";
+srcArray[1].caption = "SIZANIA DOMINGOS CA, 12";
+srcArray[2].caption = "LURDES MARIO TE, 16";
+srcArray[3].caption = "JUSTU AUGUSTINHO INDE, 12";
+srcArray[4].caption = "FADUL ARAMANDO INTCHELE, 11";
+srcArray[5].caption = "DOMINGOS LUIZ GOMES, 11";
+srcArray[6].caption = "RAICA OMENIPA IE, 14";
+srcArray[7].caption = "LUDE OMENIPA IE, 18";
+srcArray[8].caption = "NICO ANTONIO TE, 14";
+srcArray[9].caption = "FLORIANO BULAMA TE, 15";
+srcArray[10].caption = "DECO FERNADO QUADE, 11";
+srcArray[11].caption = "JAIR CA, 12";
+srcArray[12].caption = "DANILSON INACIO IE, 13";
+srcArray[13].caption = "ODE ROMINDO, 12";
+srcArray[14].caption = "PAULO CARLITO NTUMBO, 14";
+srcArray[15].caption = "TEREZA NDJUF MANA, 14";
+srcArray[16].caption = "DINA ANTONIO SANHA, 12";
+srcArray[17].caption = "JOAO BATISTA CA, 12";
+srcArray[18].caption = "REVELINO CONDE TE, 14";
+srcArray[19].caption = "NDUJAPOM IE, 14";
+srcArray[20].caption = "MARIANA ATEXE CA, 12";
+srcArray[21].caption = "CRISTOVAM TONE CA, 12";
+srcArray[22].caption = "CAROLINO PAPA CA, 16";
+srcArray[23].caption = "TCHUCHA AUGUSTINHO QUEDE, 13";
+	}
+	
+	if (grade == "5th")
+	{
+srcArray[0].caption = "FILOMENA AUGUSTINHO IE, 22";
+srcArray[1].caption = "MUSTAFA SORE QUEITA, 16";
+srcArray[2].caption = "NICHI NUNO CA, 15";
+srcArray[3].caption = "AQUINICIA DOMINGOS CA, 13";
+srcArray[4].caption = "JULIO BITAN SAUA, 13";
+srcArray[5].caption = "SAM CONH MEM, 14";
+srcArray[6].caption = "TEREZA NTUNHA, 19";
+srcArray[7].caption = "MARIATO DANFA, 13";
+srcArray[8].caption = "SENE DARAME, 9";
+srcArray[9].caption = "DJUCU DARAME, 9";
+srcArray[10].caption = "RUI COSTA NANQUE, 19";
+srcArray[11].caption = "DANIEL AVELINO SA, 13";
+srcArray[12].caption = "NOMEZINHA SIMTE CA, 13";
+srcArray[13].caption = "DINIS NHAGA, 12";
+srcArray[14].caption = "RUBERTU TAMBA, 13";
+srcArray[15].caption = "DITU NTCHETE, 18";
+srcArray[16].caption = "PEDRO NSASSE, 13";
+srcArray[17].caption = "AMISOM NHAGA, 13";
+srcArray[18].caption = "JULIO CUMBA, 16";
+srcArray[19].caption = "RUDRIGUES NTCHALA, 12";
+srcArray[20].caption = "DESIDENIA IE, 22";
+srcArray[21].caption = "EMILA IMDE, 21";
+srcArray[22].caption = "SARA BARCU SANHA, 12";
+srcArray[23].caption = "QUINTA AO IE, 12";
+srcArray[24].caption = "MARTA FRANCISCA, 22";
+srcArray[25].caption = "ANA SAMBU, 10";
+srcArray[26].caption = "GILBERTO INTCHETE, 20";
+srcArray[27].caption = "ANINHA MENDONÇA, 13";
+	}
+	
+	if (grade == "6th")
+	{
+srcArray[0].caption = "DANIELA JOTA IE, 19";
+srcArray[1].caption = "EMANUEL AUGUSTINHO IMDÉ, 14";
+srcArray[2].caption = "SAMUEL BITAM SAUA, 14";
+srcArray[3].caption = "NBI CA, 16";
+srcArray[4].caption = "BRAIMA COR, 14";
+srcArray[5].caption = "VALDO CUNTUM TE, 15";
+srcArray[6].caption = "SINEUSA DOMINGOS CA, 16";
+srcArray[7].caption = "LEONARIO ANTONIO GOMES, 15";
+srcArray[8].caption = "FRANCISCO AUGUSTINHO AOIE, 15";
+srcArray[9].caption = "ISAQUE ANTONIO SANHA, 17";
+srcArray[10].caption = "NGALE SILEMANI DARAMI, 16";
+srcArray[11].caption = "EVILINO AUGUSTINHO CA, 14";
+srcArray[12].caption = "ZICO JOAO NHAGA, 16";
+srcArray[13].caption = "SAMORA JOAQUIM CA, 18";
+srcArray[14].caption = "VANILSON AUGUSTINHO IMDE, 18";
+srcArray[15].caption = "VARIOM JOAQUIM CA, 19";
+srcArray[16].caption = "RICARDINHO ALBERTO, 16";
+srcArray[17].caption = "HELIANA AUGUSTINHO IMDE, 22";
+srcArray[18].caption = "NOIA OCANTE IE, 18";
+srcArray[19].caption = "QUIME MAM IAMETA, 15";
+srcArray[20].caption = "SILESTINO PAULO NANQUE, 18";
+srcArray[21].caption = "DIANA CUMBA SA, 14";
+srcArray[22].caption = "ANTONETA OMENIPA IE, 16";
+	}
+		
+
+	srcArray_global = srcArray; 
+}
+
+
+loadImg(26, "PreK"); 
+
+/* HOW SLIDESHOW WORKS:
+
+otherDiv goes offscreen, changes images, and slides in. After each switch, the two divs switch.
+*/
+
+var imageIndex = 0;
+var divID = new divInfo('A', srcArray_global[imageIndex]);
+var otherDiv = new divInfo('B', srcArray_global[imageIndex]);  
+$("#slide_caption_text").html(divID.source.caption); 
+var dir, move;
+var captionVisible = true; 
+function switchImage(id, gradeChange)
+{	
+	if (gradeChange)
+		imageIndex = -1;
+		
+	divAnimationComplete = false; 
+	var position_change = $(window).width();
+	var dir = id.id;
+	 
+	if (dir == "left")
+	{
+		imageIndex++;
+		move = position_change;
+	}
+	
+	if (dir == "right")
+	{
+		imageIndex--;
+		move = -position_change;
+	}
+		
+	if (imageIndex == srcArray_global.length)
+		imageIndex = 0;
+	
+	if (imageIndex < 0)
+		imageIndex = srcArray_global.length-1;
+		
+	otherDiv.source = srcArray_global[imageIndex]; 
+		
+	$("#slide_show_img_div" + divID.id).css("z-index", "0"); 
+	$("#slide_show_img_div" + otherDiv.id).css("left", move);
+	$("#slide_show_img_div" + otherDiv.id).css("background-image", "url(" + otherDiv.source.source + ")" ); 
+	$("#slide_show_img_div" + otherDiv.id).css("z-index", "25"); 
+	$("#slide_show_img_div" + otherDiv.id).animate({left: '0px'}, 1500, function(){divAnimationComplete = true; gradeAnimationComplete = true;});
+
+	var temp = divID; 
+	divID = otherDiv;
+	otherDiv = temp;
+}
+
+function switchImageByGrade(grade)
+{	
+	switch(grade){
+	case "PreK": loadImg(26, grade); 
+	$("#grade").fadeOut(750,
+		function(){
+			$("#grade").html("Pre-School");
+			$("#grade").fadeIn(750);
+		});
+	break; 
+	case "1st": loadImg(33, grade);
+	break; 
+	case "2nd": loadImg(30, grade); 
+	break; 
+	case "3rd": loadImg(28, grade); 
+	break;
+	case "4th": loadImg(24, grade);
+	break;
+	case "5th": loadImg(28, grade);
+	break;
+	case "6th": loadImg(23, grade); 
+	}
+	
+	if (grade != "PreK")
+	{
+		$("#grade").fadeOut(750,
+		function(){
+			$("#grade").html(grade + " grade");
+			$("#grade").fadeIn(750);
+		});
+	}
+		
+	$("#slide_caption_text").fadeOut(750, 
+	function(){
+		$("#slide_caption_text").html(srcArray_global[0].caption);
+		$("#slide_caption_text").fadeIn(750);
+	});
+		
+	
+	switchImage(document.getElementById("left"), true);
+}
+
+function captionHover(seconds)
+{
+	$(".sidebar").animate({width: 'toggle'}, seconds*1000);
+	if (!captionVisible)
+	{
+		var rotateval = "rotate" + " " + seconds + "s";
+		$("#slide_caption_text").html(divID.source.caption); 
+		$("#slide_caption").css("animate", rotateval);
+		$("#slide_caption").css("-webkit-animation", rotateval);
+		
+		/*$("#slide_caption").animate({left: '0px'}, 1500);*/
+		
+		
+		$("#slide_caption").css("left", "0px");
+		$("#slide_caption").css("top", "5%");
+		captionVisible = true;
+	}
+	
+	else
+	{
+		var rotateval = "rotate_back" + " " + seconds + "s";
+		$("#slide_caption").css("animate", rotateval);
+		$("#slide_caption").css("-webkit-animation", rotateval);
+		
+		/*$("#slide_caption").animate({left: '-50%'}, 1500);*/
+		
+		$("#slide_caption").css("left", "-50%");
+		$("#slide_caption").css("top", "-50%");
+		captionVisible = false;
+	}
+}
+function captionHoverSlide(seconds)
+{
+	$(".sidebar").animate({width: 'toggle'}, seconds*1000); 
+	if (!captionVisible)
+	{
+		$("#slide_caption_text").html(divID.source.caption); 
+		$("#slide_caption").animate({left: '0px'}, seconds*1000); 
+		$('#info_box').animate({left: '79%'}, seconds*1000); 
+		var movetoLeftthisMuch = $(".sidebar").width(); 
+		$("#left").children().animate({left: -movetoLeftthisMuch + 'px'}, seconds*1000);
+		captionVisible = true;
+	}
+	
+	else
+	{
+		$("#slide_caption").animate({left: '-100%'}, seconds*1000) 
+		captionVisible = false;
+		$('#info_box').animate({left: '50%'}, seconds*1000); 
+		$("#left").children().animate({left: '0'}, seconds*1000);
+	}
+}
+
+function resizeSlideShow()
+{
+	var width = $(window).width() * 0.4; 
+	$("#slide_container").height(width);
+	$("#slide_show").width(width*1.5); 
+	var height = $("#slide_show").height()*0.2; 
+	$(".sidebar").height(height);
+	$(".sidebar").width(height*(2/3));
+	$("#right img").height(height*(2/3));
+	$("#left img").height(height*(2/3));
+	$("#right img").width(height*(2/3));
+	$("#left img").width(height*(2/3));
+	$("#slide_caption").width($("#slide_show").width()*0.9); 
+	$("#slide_caption").height($("#slide_show").height()*0.20); 
+	var currentWidth = $("#slide_caption_text").width(); 
+	$("#slide_caption_text").css({fontSize: ((currentWidth/720)*36)});
+	$('#grade').css({fontSize: ((currentWidth/720)*26)});
+	$('#paypalimg').width(width*0.25);
+	$("#Background").height($(window).height());
+  	$("#Background").width($(window).width());
+}
+
+
+function clickdownButton(id)
+{
+	if (!gradeAnimationComplete)
+		return
+		
+	gradeAnimationComplete = false;
+	
+	var clicked = id.getAttribute("data-isClicked");
+	if (clicked == "true")
+		return;
+	
+	var source_array = id.src.split(''); 
+	var index = source_array.length - 5; 
+	var new_source = "Images/Buttons/" + source_array[index] + "click.png";
+	id.src = new_source;
+	
+	clicked = $("#buttonpk").attr("data-isClicked");
+	console.log(clicked); 
+	if (clicked == "true")
+	{
+		var a = "Images/Buttons/p.png";
+		$("#buttonpk").attr('src', a);
+		$("#buttonpk").attr("data-isClicked", false);
+	}
+	
+	for (var i = 1; i < 7; i++) 
+	{
+	clicked = $("#button" + i.toString()).attr("data-isClicked");
+	if (clicked == "true")
+	{ 
+		var new_source_b = "Images/Buttons/" + i.toString() + ".png";
+		$("#button" + i.toString()).attr('src', new_source_b);
+		$("#button" + i.toString()).attr("data-isClicked", false);
+	}
+	}
+	
+	var button_id = id.id; 
+	switch(button_id)
+	{
+		case "buttonpk": switchImageByGrade("PreK");
+		break;
+		case "button1": switchImageByGrade("1st");
+		break;
+		case "button2": switchImageByGrade("2nd");
+		break;
+		case "button3": switchImageByGrade("3rd");
+		break;
+		case "button4": switchImageByGrade("4th");
+		break;
+		case "button5": switchImageByGrade("5th");
+		break; 
+		case "button6": switchImageByGrade("6th");
+	}
+	
+	
+	id.setAttribute("data-isClicked", "true");
+}
+
+
+$(window).on('resize', function(){resizeSlideShow()}); 
+
+$(document).ready(
+function()
+{
+  console.log("This is a test");
+  resizeSlideShow(); 	
+  $('#slide_caption_text').html(divID.source.caption);
+  $('#slide_show_img_divA').css("background-image", "url(" + srcArray_global[1] + ")");
+  $(".sidebar").hide()
+  $("#slide_show").hover(
+  		function()
+		{
+			captionHoverSlide(0.5); 
+  		});
+  $(".sidebar").mousedown(
+  		function(e)
+		{
+			if (divAnimationComplete){
+			$(this).animate({opacity: "0.9"}, 300);
+			switchImage(this, false);
+			console.log(e.target.id);
+			}
+		});
+  $(".sidebar").mouseup(
+  		function()
+		{
+			$(this).animate({opacity: "0.7"}, 300)
+		});
+  }); 
+  
+  
+</script>
+
+<body>
+<div id="Background"></div>
+<div id = "topSection">
+<img id = "logo" src="Images/logo.png" />
+<div id = "top">
+<div id="div_menu">
+<div class="menu_item"><a href="home.html">About Us</a></div><p> | </p>
+<div class="menu_item"><a href="donate.html">Donate</a></div><p> | </p>
+<div class="menu_item"><a href="join.html">Join Us </a></div><p> | </p>
+<div class="menu_item"><a href="contact.html">Board</a></div>
+</div>
+
+<div id="slide_container" class = "shadow">
+<div id="slide_show">
+
+<div id = "slide_caption"><p id="slide_caption_text"></p></div>
+
+<div id="slide_show_img_divA" class = "innershadow"></div>
+<div id="slide_show_img_divB" class = "innershadow"></div>
+
+<div id="left" class="sidebar">
+<img src="Images/arrow.png" />
+</div>
+
+<div id="right" class="sidebar">
+<img src="Images/arrow.png" />
+</div>
+
+</div>
+
+<div id="info_box">
+<img style="height: 100%; width: 100%;" src="Images/Buttons/panel.png" />
+<h2 style="position: absolute; left: 20%; top: 5%;" id="grade">Pre-School</h2>
+<form style="position: relative; z-index: 1000;"id="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="KFJ765VG822L8">
+<input id="paypalimg" type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>
+</div>
+
+</br>
+<p style="display:inline; margin: 8px; font-family:'Arno Pro'; font-size: 18px; color:#333;"> SELECT GRADE: </p>
+<img onmousedown="clickdownButton(this)" id="buttonpk" data-isClicked="true" class="grade_button" src="Images/Buttons/pclick.png" />
+<img onmousedown="clickdownButton(this)" id="button1" data-isClicked="false" class="grade_button" src="Images/Buttons/1.png" />
+<img onmousedown="clickdownButton(this)" id="button2" data-isClicked="false" class="grade_button" src="Images/Buttons/2.png" />
+<img onmousedown="clickdownButton(this)" id="button3" data-isClicked="false" class="grade_button" src="Images/Buttons/3.png" />
+<img onmousedown="clickdownButton(this)" id="button4" data-isClicked="false" class="grade_button" src="Images/Buttons/4.png" />
+<img onmousedown="clickdownButton(this)" id="button5" data-isClicked="false" class="grade_button" src="Images/Buttons/5.png" />
+<img onmousedown="clickdownButton(this)" id="button6" data-isClicked="false" class="grade_button" src="Images/Buttons/6.png" />
+
+
+<div class="text_container shadow">
+<div class="text_body">
+<h1> Donate Today </h1>
+<p>Because our school in Pefine De Areia is located in an isolated area, we have an incredibly high illiteracy rate. Most of the people live so far away from our school that their only chance of obtaining an education is to walk miles to attend a couple of hours in this school. We have many kids who have to start school late due to the distance. The village of Pefine De Areia is a very poor village and almost every person who lives here, including the parents of all these kids, are unemployed. </br></br>
+They fight every day simply to survive and feed their families. Some of them try to fish, some carry sand from the beach and try to sell it, and some work contraction and try to re-build homes for each other. In conclusion, 90% of all our student's parents do not have jobs, yet they live every day doing whatever they can to make the smallest amount of money. The women work in harvest time to produce chest nuts that they sell for money. </br></br>
+This school has been a true blessing for these kids. Now they have the unique opportuni ty to attend a school where they can learn how to speak the official language of their country: Portuguese. Here they also learn principles of the bible and receive daily meals which makes an incredible difference in their lives: we are substituting starvation with education. We thank God which is the true source of this project and every day we are in awe of what he has done. It can definitely be said that our mission is a lot work, but we have a God who rises up his people to help his work. </br></br>
+Many church's and organizations are contributing to this project, so hopefully it may never stop expanding and just grow bigger! We thank all of you who made the decision to be a part of this project which is been incredibly important to our community. With your help we can build more classrooms in our school and possibly build another school! We would like to especially thank Pr. Nilson and Dr. Xu for your tremendous efforts and support! </br></br> 
+<img id="jun_xu" src="Images/testimg.png" />
+<p id="caption"> Vanessa Fraga </br>
+School Director </p>
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<LINK REL=StyleSheet HREF="master.css" TYPE="text/css" MEDIA=screen>
+<LINK REL=StyleSheet HREF="slideshow_normal.css" TYPE="text/css" MEDIA=screen>
+<title>Save the Children</title>
+</head>
+
+<script src="menu_glow.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+<script>
+var divAnimationComplete = true;
+function divInfo(id, source)
+{
+	this.id = id;
+	this.source = source;
+}
+
+function sourceInfo(source, caption)
+{
+	this.source= source;
+	this.caption = caption;
+}
+
+var srcArray = new Array(); 
+srcArray[0] = new sourceInfo("Images/Photos/Africa2.jpg", "Education for Opportunity!");
+srcArray[1] = new sourceInfo("Images/Photos/Africa14.jpg", "The first school we build in Guinea Bissau!");
+srcArray[2] = new sourceInfo("Images/Photos/Africa3.jpg", "Making new friends!");
+srcArray[3] = new sourceInfo("Images/Photos/Africa11.jpg", "Additional classroom build for surplus students.");
+srcArray[4] = new sourceInfo("Images/Photos/Africa12.jpg", "Teacher at school in Guinea Bissau!");
+srcArray[5] = new sourceInfo("Images/Photos/Africa13.jpg", "Eating out of the same bowl at lunch.");
+srcArray[6] = new sourceInfo("Images/Photos/Africa1.jpg", "Sitting outside in the heat.");
+; 
+
+/* HOW SLIDESHOW WORKS:
+
+otherDiv goes offscreen, changes images, and slides in. After each switch, the two divs switch.
+*/
+
+var imageIndex = 1;
+var divID = new divInfo('A', srcArray[imageIndex]);
+var otherDiv = new divInfo('B', srcArray[imageIndex]);  
+$("#slide_caption_text").html(divID.source.caption); 
+var dir, move;
+var captionVisible = true; 
+function switchImage(id)
+{	
+	divAnimationComplete = false; 
+	dir = id.id;
+	var position_change = $(window).width();
+	 
+	if (dir == "left")
+	{
+		imageIndex++;
+		move = position_change;
+	}
+	
+	if (dir == "right")
+	{
+		imageIndex--;
+		move = -position_change;
+	}
+		
+	if (imageIndex == srcArray.length)
+		imageIndex = 0;
+	
+	if (imageIndex < 0)
+		imageIndex = srcArray.length-1;
+		
+	otherDiv.source = srcArray[imageIndex]; 
+		
+	$("#slide_show_img_div" + divID.id).css("z-index", "0"); 
+	$("#slide_show_img_div" + otherDiv.id).css("left", move);
+	$("#slide_show_img_div" + otherDiv.id).css("background-image", "url(" + otherDiv.source.source + ")" ); 
+	$("#slide_show_img_div" + otherDiv.id).css("z-index", "25"); 
+	$("#slide_show_img_div" + otherDiv.id).animate({left: '0px'}, 1500, function(){divAnimationComplete = true;});
+
+	var temp = divID; 
+	divID = otherDiv;
+	otherDiv = temp;
+}
+
+function captionHover(seconds)
+{
+	$(".sidebar").animate({width: 'toggle'}, seconds*1000);
+	if (!captionVisible)
+	{
+		var rotateval = "rotate" + " " + seconds + "s";
+		$("#slide_caption_text").html(divID.source.caption); 
+		$("#slide_caption").css("animate", rotateval);
+		$("#slide_caption").css("-webkit-animation", rotateval);
+		
+		/*$("#slide_caption").animate({left: '0px'}, 1500);*/
+		
+		
+		$("#slide_caption").css("left", "0px");
+		$("#slide_caption").css("top", "5%");
+		captionVisible = true;
+	}
+	
+	else
+	{
+		var rotateval = "rotate_back" + " " + seconds + "s";
+		$("#slide_caption").css("animate", rotateval);
+		$("#slide_caption").css("-webkit-animation", rotateval);
+		
+		/*$("#slide_caption").animate({left: '-50%'}, 1500);*/
+		
+		$("#slide_caption").css("left", "-50%");
+		$("#slide_caption").css("top", "-50%");
+		captionVisible = false;
+	}
+}
+function captionHoverSlide(seconds)
+{
+	$(".sidebar").animate({width: 'toggle'}, seconds*1000); 
+	if (!captionVisible)
+	{
+		$("#slide_caption_text").html(divID.source.caption); 
+		$("#slide_caption").animate({left: '0px'}, seconds*1000); 
+		var movetoLeftthisMuch = $(".sidebar").width(); 
+		$("#left").children().animate({left: -movetoLeftthisMuch + 'px'}, seconds*1000);
+		captionVisible = true;
+	}
+	
+	else
+	{
+		$("#slide_caption").animate({left: '-100%'}, seconds*1000) 
+		captionVisible = false;
+		$("#left").children().animate({left: '0'}, seconds*1000);
+	}
+}
+	
+$(window).on('resize', function(){resizeSlideShow()}); 
+
+
+$(document).ready(
+function()
+{
+  resizeSlideShow(); 	
+  $('#slide_show_img_divA').css("background-image", "url(" + srcArray[1].source + ")");
+  $('#slide_show_img_divB').css("background-image", "url(" + srcArray[1].source + ")");
+  $(".sidebar").hide()
+  $("#slide_show").hover(
+  		function()
+		{
+			captionHoverSlide(0.5); 
+  		});
+  $(".sidebar").mousedown(
+  		function()
+		{
+			if (divAnimationComplete){
+			$(this).animate({opacity: "0.9"}, 300);
+			switchImage(this);
+			}
+		});
+  $(".sidebar").mouseup(
+  		function()
+		{
+			$(this).animate({opacity: "0.7"}, 300)
+			//$(this).click(false);
+		});
+  }); 
+  
+  
+</script>
+
+<body>
+<div id="Background" style="background-image:url(Images/Photos/JoinUsBG.jpg);"></div>
+<div id = "topSection">
+<img id = "logo" src="Images/logo.png" />
+<div id = "top">
+<div id="div_menu">
+<div class="menu_item"><a href="home.html">About Us</a></div><p> | </p>
+<div class="menu_item"><a href="donate.html">Donate</a></div><p> | </p>
+<div class="menu_item"><a href="join.html">Join Us </a></div><p> | </p>
+<div class="menu_item"><a href="contact.html">Board</a></div>
+</div>
+
+
+<div id="slide_container" class = "shadow">
+<div id="slide_show">
+<div id = "slide_caption">
+<p id="slide_caption_text">The first school we build in Guinea Bissau!</p>
+</div>
+<div id="slide_show_img_divA" class = "innershadow">
+</div>
+<div id="slide_show_img_divB" class = "innershadow">
+</div>
+
+<div id="left" class="sidebar">
+<img src="Images/arrow.png" />
+</div>
+
+<div id="right" class="sidebar">
+<img src="Images/arrow.png" />
+</div>
+</div>
+
+<div class="text_container shadow">
+
+<div id="joinUsTxtBody" class="text_body">
+<h1> Join Our Cause </h1>
+<p>Fill out the forms below if you can help out in any way!</p>
+<form name="contactform" method="post" action="mailform.php">
+<div id ="small_forms">
+<label>First name*:</label><input type="text" name="firstname"><br /><br />
+<label>Last name*:</label><input type="text" name="lastname"><br /><br />
+<label>Email Address*:</label><input type="text" name="email"><br /><br />
+<label>Phone Number:</label><input type="text" name="phone"><br /><br /> </div>
+<label id ="txtar">How can you contribute?</label> <br />
+<textarea name="contribute" cols="50" rows="5"></textarea></br>
+<INPUT type="submit" value="Send"><INPUT type="reset">
+</div>
+</form>
+
+</div>
+<p id="test">
+</p>
+</div>
+</body>
+</html>

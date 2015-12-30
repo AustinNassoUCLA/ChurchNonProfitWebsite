@@ -1,0 +1,223 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<LINK REL=StyleSheet HREF="master.css" TYPE="text/css" MEDIA=screen>
+<LINK REL=StyleSheet HREF="slideshow_normal.css" TYPE="text/css" MEDIA=screen>
+<title>Save the Children</title>
+</head>
+
+<script src="menu_glow.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+<script type="text/javascript">
+var divAnimationComplete = true;
+function divInfo(id, source)
+{
+	this.id = id;
+	this.source = source;
+}
+
+function sourceInfo(source, caption)
+{
+	this.source= source;
+	this.caption = caption;
+}
+
+var srcArray = new Array(); 
+srcArray[0] = new sourceInfo("Images/Photos/1.jpg", "Children awaiting their meals!");
+srcArray[1] = new sourceInfo("Images/Photos/2.jpg", "Education for Opportunity!");
+srcArray[2] = new sourceInfo("Images/Photos/3.jpg", "Making new friends!");
+srcArray[3] = new sourceInfo("Images/Photos/4.jpg", "Looking for a home");
+srcArray[4] = new sourceInfo("Images/Photos/Africa10.jpg", "The local drinking water.");
+srcArray[5] = new sourceInfo("Images/Photos/Africa9.jpg", "Drinking well water.");
+srcArray[6] = new sourceInfo("Images/Photos/Africa8.jpg", "Lunch in Guinea Bissau school.");
+srcArray[7] = new sourceInfo("Images/Photos/Africa7.jpg", "Waiting to participate in class.");
+; 
+
+/* HOW SLIDESHOW WORKS:
+
+otherDiv goes offscreen, changes images, and slides in. After each switch, the two divs switch.
+*/
+
+var imageIndex = 1;
+var divID = new divInfo('A', srcArray[imageIndex]);
+var otherDiv = new divInfo('B', srcArray[imageIndex]);  
+$("#slide_caption_text").html(divID.source.caption); 
+var dir, move;
+var captionVisible = true; 
+function switchImage(id)
+{	
+	divAnimationComplete = false; 
+	dir = id.id;
+	var position_change = $(window).width();
+	 
+	if (dir == "left")
+	{
+		imageIndex++;
+		move = position_change;
+	}
+	
+	if (dir == "right")
+	{
+		imageIndex--;
+		move = -position_change;
+	}
+		
+	if (imageIndex == srcArray.length)
+		imageIndex = 0;
+	
+	if (imageIndex < 0)
+		imageIndex = srcArray.length-1;
+		
+	otherDiv.source = srcArray[imageIndex]; 
+		
+	$("#slide_show_img_div" + divID.id).css("z-index", "0"); 
+	$("#slide_show_img_div" + otherDiv.id).css("left", move);
+	$("#slide_show_img_div" + otherDiv.id).css("background-image", "url(" + otherDiv.source.source + ")" ); 
+	$("#slide_show_img_div" + otherDiv.id).css("z-index", "25"); 
+	$("#slide_show_img_div" + otherDiv.id).animate({left: '0px'}, 1500, function(){divAnimationComplete = true;});
+
+	var temp = divID; 
+	divID = otherDiv;
+	otherDiv = temp;
+}
+
+function captionHover(seconds)
+{
+	$(".sidebar").animate({width: 'toggle'}, seconds*1000);
+	if (!captionVisible)
+	{
+		var rotateval = "rotate" + " " + seconds + "s";
+		$("#slide_caption_text").html(divID.source.caption); 
+		$("#slide_caption").css("animate", rotateval);
+		$("#slide_caption").css("-webkit-animation", rotateval);
+		
+		/*$("#slide_caption").animate({left: '0px'}, 1500);*/
+		
+		
+		$("#slide_caption").css("left", "0px");
+		$("#slide_caption").css("top", "5%");
+		captionVisible = true;
+	}
+	
+	else
+	{
+		var rotateval = "rotate_back" + " " + seconds + "s";
+		$("#slide_caption").css("animate", rotateval);
+		$("#slide_caption").css("-webkit-animation", rotateval);
+		
+		/*$("#slide_caption").animate({left: '-50%'}, 1500);*/
+		
+		$("#slide_caption").css("left", "-50%");
+		$("#slide_caption").css("top", "-50%");
+		captionVisible = false;
+	}
+}
+function captionHoverSlide(seconds)
+{
+	$(".sidebar").animate({width: 'toggle'}, seconds*1000); 
+	if (!captionVisible)
+	{
+		$("#slide_caption_text").html(divID.source.caption); 
+		$("#slide_caption").animate({left: '0px'}, seconds*1000); 
+		var movetoLeftthisMuch = $(".sidebar").width(); 
+		$("#left").children().animate({left: -movetoLeftthisMuch + 'px'}, seconds*1000);
+		captionVisible = true;
+	}
+	
+	else
+	{
+		$("#slide_caption").animate({left: '-100%'}, seconds*1000) 
+		captionVisible = false;
+		$("#left").children().animate({left: '0'}, seconds*1000);
+	}
+}
+
+$(window).on('resize', function(){resizeSlideShow()}); 
+
+$(document).ready(
+
+function()
+{
+  resizeSlideShow(); 	
+  $('#slide_show_img_divA').css("background-image", "url(" + srcArray[1].source + ")");
+  $('#slide_show_img_divB').css("background-image", "url(" + srcArray[1].source + ")");
+  $(".sidebar").hide()
+  $("#slide_show").hover(
+  		function()
+		{
+			captionHoverSlide(0.5); 
+  		});
+  $(".sidebar").mousedown(
+  		function()
+		{
+			if (divAnimationComplete){
+			$(this).animate({opacity: "0.9"}, 300);
+			switchImage(this);
+			}
+		});
+  $(".sidebar").mouseup(
+  		function()
+		{
+			$(this).animate({opacity: "0.7"}, 300)
+			//$(this).click(false);
+		});
+  }); 
+  
+  
+</script>
+
+<body>
+<div id="Background" style="background-image:url(Images/Photos/indexBG.jpg);"></div>
+<div id = "topSection">
+<img id = "logo" src="Images/logo.png" />
+<div id = "top">
+<div id="div_menu">
+<div class="menu_item"><a href="home.html">About Us</a></div><p> | </p>
+<div class="menu_item"><a href="donate.html">Donate</a></div><p> | </p>
+<div class="menu_item"><a href="join.html">Join Us </a></div><p> | </p>
+<div class="menu_item"><a href="contact.html">Board</a></div>
+</div>
+
+<div id="slide_container" class = "shadow">
+<div id="slide_show">
+
+<div id = "slide_caption"><p id="slide_caption_text">Education for Opportunity!</p></div>
+
+<div id="slide_show_img_divA" class = "innershadow"></div>
+<div id="slide_show_img_divB" class = "innershadow"></div>
+
+<div id="left" class="sidebar">
+<img src="Images/arrow.png" />
+</div>
+
+<div id="right" class="sidebar">
+<img src="Images/arrow.png" />
+</div>
+
+</div>
+
+<div class="text_container shadow">
+<div class="text_body">
+<h1> Our Mission </h1>
+<p>Save the Children Mission gives children in the West African villages of Senegal and Guinea Bissau an opportunity to receive what every child deserves – a healthy start and the opportunity to learn.   Our fundraising efforts are aimed at providing quality educational facilities and programs that enhance lives. 
+</br></br>
+Education is the road that children follow to reach their full potential in life. It guides them to a better future. Please help us give them a better future by adopting a child in our program. By adopting a child you will be able to impact their lives by making a difference. 
+</br></br>
+Our first school is an elementary school that provides these children with education in math, reading, and writing. Most of these children are not interested in learning at first, they start going to school for the hot lunches we provide daily. For most of these children, this is the only meal they will receive the entire day, since at home they may not have the means to buy food. However, even though food is what they think of at first, after seeing what education does, more and more children become excited to learn.
+</br></br>
+Our second school will be a trade school in Senegal; we are in the process of raising funds to build this school. By building this school we are giving the opportunity to thousands of young adults to have a future. The trade school will provide them with the means to learn a trade where each individual will be able to start a life in that field of work, such as being an electrician, carpenter, and a nurse. 
+</br></br>
+Our main goal is to better the lives of these children and young adults. Without our help these children can end up homeless, begging for money, and extremely ill. We ask that you adopt a child today so they may have a better tomorrow. 
+</br></br>
+</p>
+<img id="jun_xu" src="Images/junxu.jpg" />
+<p id="caption"> Dr. Jun Xu </br> Founder </p>
+</div>
+</div>
+<p id="test">
+</p>
+</div>
+</body>
+</html>
